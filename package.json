@@ -2,25 +2,91 @@
   "name": "graph-renderer",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.67",
-    "@types/react": "^18.2.42",
-    "@types/react-dom": "^18.2.17",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
+    "Setup Project": "npm install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "Copy dev ENV file": "cp -f ./src/skins/musigma/dev/.env .",
+    "Copy Prod ENV": "cp -f ./src/skins/musigma/prod/.env .",
+    "typecheck": "tsc",
+    "prebuild": "npm run test && npm run typecheck",
+    "start:dev": "NODE_ENV=development react-scripts start",
+    "start:prod": "NODE_ENV=production react-scripts start",
+    "build:dev": "npm run prebuild && NODE_ENV=development react-scripts build",
+    "build:prod": "npm run prebuild && NODE_ENV=production react-scripts build"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,jsx,ts,tsx,css,json}": [
+        "prettier-eslint --write",
+        "git add"
+      ]
+    }
+  },
+  "engines": {
+    "yarn": ">=1.10",
+    "node": ">= 16.10.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.9",
+    "@types/jest": "^29.5.10",
+    "@types/luxon": "^3.3.7",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^18.2.17",
+    "esbuild": "^0.14.26",
+    "neo4j-driver-core": "5.9.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "rollup": "^2.70.1",
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.16",
+    "@juggle/resize-observer": "^3.3.1",
+    "@neo4j-cypher/antlr4": "^1.0.0",
+    "@neo4j-cypher/editor-support": "^1.0.1",
+    "@neo4j-cypher/extract-statements": "^1.0.1",
+    "@neo4j-devtools/word-color": "^0.0.7",
+    "@types/d3-color": "^3.0.2",
+    "@types/d3-drag": "^3.0.1",
+    "@types/d3-ease": "^3.0.0",
+    "@types/d3-force": "^3.0.3",
+    "@types/d3-scale": "^4.0.2",
+    "@types/d3-selection": "^3.0.2",
+    "@types/d3-shape": "^3.0.2",
+    "@types/d3-transition": "^3.0.1",
+    "@types/d3-zoom": "^3.0.1",
+    "@types/lodash-es": "^4.17.6",
+    "@types/styled-components": "^5.1.1",
+    "d3-color": "^3.0.1",
+    "d3-drag": "^3.0.0",
+    "d3-ease": "^3.0.1",
+    "d3-force": "^3.0.0",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.0.1",
+    "d3-transition": "^3.0.1",
+    "d3-zoom": "^3.0.0",
+    "deepmerge": "^4.2.2",
+    "graphology": "^0.25.4",
+    "lodash-es": "^4.17.21",
+    "luxon": "^3.4.4",
+    "monaco-editor": "0.23.0",
+    "neo4j-driver": "^5.15.0",
+    "re-resizable": "^6.9.9",
+    "react-is": "^17.0.2",
+    "styled-components": "^5.3.5",
+    "web-vitals": "^3.5.0"
+  },
+  "peerDependencies": {
+    "neo4j-driver-core": "5.9.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "eslintConfig": {
     "extends": [
